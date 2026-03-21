@@ -24,12 +24,13 @@ pipeline {
         SONAR_URL = "http://172.17.0.1:9000"
       }
       steps {
-        withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')])  
+        withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
         withEnv(["JAVA_HOME=${tool 'JDK17'}"]) {
           sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
         }
       }
     }
+   }
     stage('Build and Push Docker Image') {
       environment {
         DOCKER_IMAGE = "khareesh/ultimate-cicd:${BUILD_NUMBER}"
