@@ -46,8 +46,8 @@ pipeline {
             withCredentials([usernamePassword(credentialsId: 'docker-cred', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                 sh "echo ${DOCKER_PASSWORD} | /usr/bin/docker login -u ${DOCKER_USERNAME} --password-stdin"
                 sh "/usr/bin/docker push ${DOCKER_IMAGE}"
+           }
         }
-      }
     }
     stage('Update Deployment File') {
         environment {
