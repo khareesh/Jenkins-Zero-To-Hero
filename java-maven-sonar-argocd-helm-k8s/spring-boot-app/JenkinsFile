@@ -1,5 +1,5 @@
 pipeline {
-  agent any {
+  agent  {
     docker {
       image 'khareesh/maven-jenkins-project:latest'
       image 'maven:3.9-eclipse-temurin-17'
