@@ -36,7 +36,6 @@ pipeline {
         DOCKER_IMAGE = "khareesh/ultimate-cicd:${BUILD_NUMBER}"
         // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
         REGISTRY_CREDENTIALS = credentials('docker-cred')
-        DOCKER_BIN = "/usr/bin/docker"
       }
       steps {
         script {
